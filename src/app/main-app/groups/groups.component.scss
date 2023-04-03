@@ -1,0 +1,13 @@
+.content-wrapper{
+  display: -webkit-flex;
+  display: flex;
+  height: calc(100% - 5rem);
+}
+
+.content-container {
+  background-color: white;
+  border-radius: 5px;
+  padding: 25px;
+  margin: 20px;
+  flex-grow: 1;
+}

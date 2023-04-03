@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {UserLogin} from "../models/userLogin.model";
 import {Router} from "@angular/router";
@@ -15,7 +15,7 @@ import {NotificationType} from "../models/notificationType.enum";
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss']
 })
-export class LogInComponent {
+export class LogInComponent implements OnInit, OnDestroy{
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
@@ -39,7 +39,7 @@ export class LogInComponent {
 
   ngOnInit(): void {
     if(this.authenticationService.isLoggedIn()) {
-      this.router.navigateByUrl('/persons');
+      this.router.navigateByUrl('/dashboard');
     } else {
       this.router.navigateByUrl('/login')
     }
@@ -59,8 +59,7 @@ export class LogInComponent {
           console.log(token);
           this.authenticationService.saveToken(token);
           this.authenticationService.addUserToLocalCache(response.body);
-          this.notificationService.notify(NotificationType.SUCCESS, "user found")
-          // this.router.navigateByUrl('persons');
+          this.router.navigateByUrl('dashboard');
           this.showLoading = false;
         },
         (errorResponse : HttpErrorResponse) => {

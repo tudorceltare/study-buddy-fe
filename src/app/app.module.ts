@@ -20,12 +20,15 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
+import { MainAppComponent } from './main-app/main-app.component';
+import {MainAppModule} from "./main-app/main-app.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     LogInComponent,
-    RegisterComponent
+    RegisterComponent,
+    MainAppComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import {HttpClientModule} from "@angular/common/http";
     NotifierModule,
     NotificationModule,
     MatSelectModule,
+    MainAppModule
   ],
   providers: [
     authInterceptorProvider,
