@@ -22,7 +22,7 @@ export class RoleGuard implements CanActivate {
       if (user.role == "ROLE_SUPER_ADMIN") {
         return true;
       } else {
-        this.router.navigate(['persons/' + user.id])
+        // this.router.navigate(['persons/' + user.id])
       }
     }
     return false;
