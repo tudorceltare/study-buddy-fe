@@ -10,6 +10,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import { GroupsComponent } from './groups/groups.component';
+import {MatChipsModule} from "@angular/material/chips";
 
 
 @NgModule({
@@ -18,12 +19,13 @@ import { GroupsComponent } from './groups/groups.component';
     SidenavComponent,
     GroupsComponent
   ],
-  imports: [
-    CommonModule,
-    MainAppRoutingModule,
-    MatButtonModule,
-    MatIconModule
-  ],
+    imports: [
+        CommonModule,
+        MainAppRoutingModule,
+        MatButtonModule,
+        MatIconModule,
+        MatChipsModule
+    ],
   exports: [
     SidenavComponent
   ],

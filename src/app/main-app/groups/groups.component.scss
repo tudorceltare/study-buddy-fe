@@ -10,4 +10,67 @@
   padding: 25px;
   margin: 20px;
   flex-grow: 1;
+  overflow: auto;
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(390px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  border-radius: 5px;
+  border: #DEE5E8 solid 2px;
+  padding: 8px;
+  background-color: white;
+  --widthsize: 380px;
+  display: grid;
+  grid-template-areas: "top-corner top-corner""smth-else stuff";
+  grid-template-columns: 1rem auto;
+  grid-template-rows: 1rem auto;
+  aspect-ratio: 19 / 13;
+}
+
+.anything-else {
+  grid-area: stuff;
+  display: flex;
+  flex-direction: column;
+}
+
+.tool-card-header {
+  color: #213555;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.4px;
+  line-height: 1.25em;
+  margin-bottom: 8px;
+}
+
+.line-style {
+  width: calc(var(--widthsize) / 4.8);
+  height: 2px;
+  border-width: 0;
+  text-align:left;
+  margin-left:0;
+  background-color: #F7936C;
+  color: #F7936C;
+}
+
+.tool-card-content {
+  color: #213555;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.35px;
+  line-height: 18px;
+}
+.info-with-icon-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1rem;
+}
+
+.chips-container{
+  overflow-x: auto;
 }

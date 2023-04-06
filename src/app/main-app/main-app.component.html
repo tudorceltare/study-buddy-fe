@@ -1,10 +1,10 @@
 <app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
 <div class="main-body" [ngClass]="getBodyClass()">
-  <mat-toolbar class="toolbar" color="primary">
+  <mat-toolbar class="toolbar">
     <div class="toolbar-content">
-      Energy Management App
+      Groups
       <div class="right-elements">
-        <button class="right-element" mat-flat-button color="primary" (click)="logout()">Logout</button>
+        <button class="right-element" mat-stroked-button (click)="logout()">Logout</button>
         <span class="avatar" [style.background]="'linear-gradient(' + this.angleOfGradient(this.username) +'deg , '
       + this.avatarColor + ' 0%, ' + this.invertHexColor(this.avatarColor) + ' 100%)'">
         {{getAvatarInitials()}}

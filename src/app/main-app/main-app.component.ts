@@ -14,7 +14,6 @@ interface SideNavToggle {
 })
 export class MainAppComponent implements OnInit, OnDestroy{
 
-  // @Input() collapsed = false;
   screenWidth = 0;
   isSideNavCollapsed = false;
   avatarColor: string = '';
@@ -41,6 +40,7 @@ export class MainAppComponent implements OnInit, OnDestroy{
   }
 
   onToggleSideNav(data: SideNavToggle): void {
+    console.log('Side Nav Toggled: true');
     this.screenWidth = data.screenWidth;
     this.isSideNavCollapsed = data.collapsed;
   }

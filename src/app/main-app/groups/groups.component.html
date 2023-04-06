@@ -1,1 +1,40 @@
-<p>groups works!</p>
+<div class="content-wrapper">
+  <div class="content-container">
+    <div class="panels">
+      <div class="card" *ngFor="let data of this.dummyData">
+        <div class="anything-else">
+          <div class="tool-card-header">
+        <span>
+          {{data.name}}
+        </span>
+          </div>
+          <hr class="line-style">
+          <div class="tool-card-content">
+            <p>
+              {{data.description}}
+            </p>
+            <div class="info-with-icon-right">
+              <p>
+                {{data.location}}
+              </p>
+              <i class="fal fa-map-marker-alt"></i>
+            </div>
+            <div class="info-with-icon-right">
+              <p>
+                {{data.date.toLocaleString()}}
+              </p>
+              <i class="fal fa-calendar-alt"></i>
+            </div>
+            <div class="chips-container">
+              <mat-chip-listbox>
+                <mat-chip *ngFor="let interest of data.interests">
+                  {{interest}}
+                </mat-chip>
+              </mat-chip-listbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
