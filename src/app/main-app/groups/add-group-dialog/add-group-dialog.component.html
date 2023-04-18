@@ -1,0 +1,21 @@
+<div class="content-container">
+  <h1>Add new Group</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="creatGroup()" style="width: 90%;">
+    <p>
+      <mat-form-field appearance="outline">
+        <input type="text" matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" style="flex: 1; display: flex">
+        <textarea type="text" matInput placeholder="Description" formControlName="description"></textarea>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <input type="text" matInput placeholder="Location" formControlName="location">
+      </mat-form-field>
+    </p>
+    <button mat-stroked-button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

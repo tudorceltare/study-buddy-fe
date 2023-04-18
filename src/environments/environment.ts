@@ -4,5 +4,15 @@ export const environment = {
   apiEndpoints: {
     login: "login/",
     register: "users/register/",
+    users: "users/",
+    groups: "groups/",
+    groupCreate: "groups/create/",
+    groupUpdate: "groups/update/",
+    groupDelete: "groups/delete/",
+    groupMembers: "groups/members/",
+    groupWhereMember: "groups/where-member/",
+    groupWhereAdmin: "groups/where-admin/",
+    groupJoin: "groups/join/",
+    groupLeave: "groups/leave/",
   }
 };

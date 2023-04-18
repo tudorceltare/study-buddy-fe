@@ -1,16 +1,111 @@
-.content-wrapper{
-  display: -webkit-flex;
-  display: flex;
-  height: calc(100% - 5rem);
-}
 
-.content-container {
+
+.content-card {
+  //box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   background-color: white;
-  border-radius: 5px;
-  padding: 25px;
-  margin: 20px;
   flex-grow: 1;
   overflow: auto;
+  border-radius: 5px;
+}
+
+.group-header-wrapper {
+  //display: flex;
+  //justify-content: space-between;
+  //align-items: center;
+  //.header-content-left {
+  //  display: flex;
+  //  align-items: center;
+  //  margin-left: 10px;
+  //}
+  //.header-content-right {
+  //  display: flex;
+  //  align-items: center;
+  //  margin-right: 10px;
+  //}
+}
+
+.group-header-container {
+  margin: 20px 20px 10px 20px;
+  padding: 10px 25px;
+  //padding-right: 25px;
+  //padding-left: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .header-content-left {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+
+    .button-toggle {
+      margin-right: 10px;
+      height: 2rem;
+      align-items: center;
+    }
+  }
+  .header-content-right {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+
+    .button {
+      margin-left: 10px;
+    }
+
+    .search-bar-container {
+      position: relative;
+      margin-right: 1.5em;
+    }
+
+    .search-bar-input {
+      border: 1px solid #CBDAF0;
+      height: 32px;
+      width: 260px;
+      background: rgb(233, 239, 247, 0.5);
+      border-radius: 50px;
+      padding: 4px 11px 4px 40px;
+      font-size: 13px;
+      color: #213555;
+    }
+
+    .search-bar-input:focus {
+      outline: none;
+    }
+
+    .search-bar-input::placeholder {
+      color: #213555;
+    }
+
+    .search-bar-input::-webkit-search-cancel-button {
+      position: relative;
+      cursor: pointer;
+      color: #9DA9AE;
+    }
+
+    .search-icon {
+      position: absolute;
+      color: #405F8C;
+      padding: 4px 0px 4px 8px;
+    }
+  }
+}
+
+.content-wrapper{
+  //display: -webkit-flex;
+  display: flex;
+  //height: calc(100% - 5rem);
+  //flex-grow: 1;
+  //overflow: auto;
+}
+
+// fill the rest of the screen height
+.content-container {
+  padding: 25px;
+  margin: 10px 20px 20px 20px;
+  //background-color: white;
+  flex-grow: 1;
+  overflow: auto;
+  //border-radius: 5px;
 }
 
 .panels {
@@ -30,6 +125,11 @@
   grid-template-columns: 1rem auto;
   grid-template-rows: 1rem auto;
   aspect-ratio: 19 / 13;
+  &:hover {
+    background-color: rgba(247, 147, 108, 0.1);
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+  }
 }
 
 .anything-else {

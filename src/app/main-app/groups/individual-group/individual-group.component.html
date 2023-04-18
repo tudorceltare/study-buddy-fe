@@ -1,0 +1,11 @@
+<div class="content-wrapper">
+  <div class="content-container">
+    <div *ngIf="group != undefined">
+      <p>{{this.group.id}}</p>
+      <p>{{this.group.name}}</p>
+      <p>{{this.group.description}}</p>
+      <p>{{this.group.location}}</p>
+    </div>
+    <mat-spinner *ngIf="this.loading"></mat-spinner>
+  </div>
+</div>
