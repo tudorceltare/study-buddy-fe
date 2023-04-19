@@ -1,11 +1,74 @@
 <div class="content-wrapper">
   <div class="content-container">
-    <div *ngIf="group != undefined">
-      <p>{{this.group.id}}</p>
-      <p>{{this.group.name}}</p>
-      <p>{{this.group.description}}</p>
-      <p>{{this.group.location}}</p>
+
+    <div *ngIf="group != undefined" class="row">
+      <div class="column">
+        <h1>{{this.group.name}}</h1>
+        <p style="color: rgba(0, 0, 0, 0.5)">{{this.group.description}}</p>
+        <div class="info-with-icon-right">
+          <p><b>Location: </b>
+          </p>
+          <div style="width: 50%; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly">
+            <p>{{this.group.location}}</p>
+            <i class="fal fa-map-marker-alt"></i>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="group-actions">
+          <button mat-stroked-button *ngIf="!checkIfUserIsAMember()" (click)="joinGroup()" [disabled]="this.loading">
+            <span>Join Group</span>
+          </button>
+          <button mat-flat-button *ngIf="checkIfUserIsAMember()" (click)="openLeaveGroupDialog(groupId)" [disabled]="this.loading">
+            <span>Leave Group</span>
+          </button>
+          <button mat-button color="warn" *ngIf="authUserIsAdmin" (click)="openDeleteGroupDialog(groupId)" [disabled]="this.loading" style="margin-right: 1rem">
+            <span>Delete Group</span>
+          </button>
+        </div>
+        <h3>Members:</h3>
+        <div class="table-container mat-elevation-z1">
+          <table mat-table [dataSource]="group.members">
+            <ng-container matColumnDef="avatar">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <span class="profile-image" [style.background]="'linear-gradient(' + this.angleOfGradient(element.username) +'deg , '
+                + element.avatarColor + ' 0%, ' + this.invertHexColor(element.avatarColor) + ' 100%)'">
+                  {{this.getAvatarInitials(element)}}
+                </span>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="firstname">
+              <th mat-header-cell *matHeaderCellDef> First Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="lastname">
+              <th mat-header-cell *matHeaderCellDef> Last Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="username">
+              <th mat-header-cell *matHeaderCellDef> Username </th>
+              <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+            </ng-container>
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+            <ng-container matColumnDef="options">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="openMemberOptionsDialog($event)" style="height: 2rem; width: 2rem; padding: 0.5rem;" *ngIf="authUserIsAdmin">
+                  <i class="far fa-ellipsis-v fa-xs" style="display: flex; align-items: center; justify-content: center"></i>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </div>
     </div>
-    <mat-spinner *ngIf="this.loading"></mat-spinner>
   </div>
+  <mat-spinner class="spinner" *ngIf="this.loading"></mat-spinner>
 </div>

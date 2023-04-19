@@ -18,6 +18,10 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { IndividualGroupComponent } from './groups/individual-group/individual-group.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatTableModule} from "@angular/material/table";
+import { MemberOptionsDialogComponent } from './groups/individual-group/member-options-dialog/member-options-dialog.component';
+import { DeleteGroupDialogComponent } from './groups/individual-group/delete-group-dialog/delete-group-dialog.component';
+import { LeaveGroupDialogComponent } from './groups/individual-group/leave-group-dialog/leave-group-dialog.component';
 
 
 @NgModule({
@@ -26,20 +30,24 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     SidenavComponent,
     GroupsComponent,
     AddGroupDialogComponent,
-    IndividualGroupComponent
+    IndividualGroupComponent,
+    MemberOptionsDialogComponent,
+    DeleteGroupDialogComponent,
+    LeaveGroupDialogComponent
   ],
-    imports: [
-        CommonModule,
-        MainAppRoutingModule,
-        MatButtonModule,
-        MatIconModule,
-        MatChipsModule,
-        MatDialogModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatButtonToggleModule,
-        MatProgressSpinnerModule
-    ],
+  imports: [
+    CommonModule,
+    MainAppRoutingModule,
+    MatButtonModule,
+    MatIconModule,
+    MatChipsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonToggleModule,
+    MatProgressSpinnerModule,
+    MatTableModule
+  ],
   exports: [
     SidenavComponent
   ],

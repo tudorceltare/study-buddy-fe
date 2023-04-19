@@ -1,0 +1,9 @@
+.content-container{
+  margin: 1rem;
+  padding: 10px 25px;
+  height: calc(100% - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
