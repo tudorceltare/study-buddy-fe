@@ -1,16 +1,19 @@
 <div class="content-container">
-  <h1>Add new Group</h1>
-  <form [formGroup]="formGroup" (ngSubmit)="creatGroup()" style="width: 90%;">
+  <h1>Edit Group</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="editGroup()" style="width: 90%;">
+    <p><b>Current Name:</b> {{this.group.name}}</p>
     <p>
       <mat-form-field appearance="outline">
         <input type="text" matInput placeholder="Name" formControlName="name">
       </mat-form-field>
     </p>
+    <p><b>Current Description:</b> {{this.group.description}}</p>
     <p>
       <mat-form-field appearance="outline" style="flex: 1; display: flex">
         <textarea type="text" matInput placeholder="Description" formControlName="description"></textarea>
       </mat-form-field>
     </p>
+    <p><b>Current Location:</b> {{this.group.location}}</p>
     <p>
       <mat-form-field appearance="outline">
         <input type="text" matInput placeholder="Location" formControlName="location">

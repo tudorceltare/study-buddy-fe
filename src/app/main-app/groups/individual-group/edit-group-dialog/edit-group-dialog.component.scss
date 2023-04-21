@@ -1,0 +1,18 @@
+.content-container{
+  margin: 20px 20px 10px 20px;
+  padding: 10px 25px;
+  height: calc(100% - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-form-field{
+  width: 100%;
+  min-width: 300px;
+}
+
+mat-form-field textarea {
+  height: calc(100% - 120px); /* Or any other value that you want to subtract */
+}

@@ -10,6 +10,7 @@ import {NotificationService} from "../../../service/notification.service";
 import {NotificationType} from "../../../models/notificationType.enum";
 import {DeleteGroupDialogComponent} from "./delete-group-dialog/delete-group-dialog.component";
 import {LeaveGroupDialogComponent} from "./leave-group-dialog/leave-group-dialog.component";
+import {EditGroupDialogComponent} from "./edit-group-dialog/edit-group-dialog.component";
 
 @Component({
   selector: 'app-individual-group',
@@ -52,26 +53,13 @@ export class IndividualGroupComponent implements OnInit {
     }
   }
 
+  checkIfElementIsAdmin(element: User) {
+    return element.id === this.group!.admin.id;
+  }
+
   checkIfUserIsAMember() {
     const user: User | null = this.authenticationService.getUserFromLocalCache();
     return !!this.group!.members.find(member => member.id === user!.id);
-  }
-
-  openMemberOptionsDialog($event: MouseEvent) {
-    this.stopPropagation($event);
-    const dialogConfig = new MatDialogConfig();
-    // dialogConfig.width = '50%'
-    // dialogConfig.height = '30%'
-    dialogConfig.autoFocus = false;
-    dialogConfig.disableClose = false;
-    const dialogRef = this.dialog.open(MemberOptionsDialogComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(
-      status => {
-        if (status) {
-          this.ngOnInit();
-        }
-      }
-    );
   }
 
   stopPropagation(event: MouseEvent) {
@@ -159,6 +147,39 @@ export class IndividualGroupComponent implements OnInit {
       });
   }
 
+
+  openMemberOptionsDialog($event: MouseEvent, user: User) {
+    this.stopPropagation($event);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { user, groupId: this.groupId };
+    // dialogConfig.width = '50%'
+    // dialogConfig.height = '30%'
+    dialogConfig.autoFocus = false;
+    dialogConfig.disableClose = false;
+    const dialogRef = this.dialog.open(MemberOptionsDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      status => {
+        if (status) {
+          this.ngOnInit();
+        }
+      }
+    );
+  }
+
+  openEditGroupDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { group: this.group };
+    dialogConfig.autoFocus = false;
+    dialogConfig.disableClose = false;
+    const dialogRef = this.dialog.open(EditGroupDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      status => {
+        if (status) {
+          this.ngOnInit();
+        }
+      }
+    );
+  }
 }
 
 

@@ -12,17 +12,18 @@ export class RoleGuard implements CanActivate {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.checkUserRole(route);
   }
 
   checkUserRole(route: ActivatedRouteSnapshot): boolean {
     let user = this.authenticationService.getUserFromLocalCache()
     if (user !== null) {
-      if (user.role == "ROLE_SUPER_ADMIN") {
+      if (user.role == "ROLE_SUPER_ADMIN" || user.role == "ROLE_USER") {
         return true;
       } else {
-        // this.router.navigate(['persons/' + user.id])
+        // this.router.navigate(['groups/'])
       }
     }
     return false;

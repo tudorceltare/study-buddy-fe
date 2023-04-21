@@ -61,4 +61,11 @@ export class GroupsService {
     return this.http.post<Group>(this.url + this.groupLeave + groupId, null);
   }
 
+  kickUser(groupId: string, id: string) {
+    console.log(groupId, id);
+  }
+
+  makeAdmin(groupId: string, id: string) {
+    console.log(groupId, id);
+  }
 }

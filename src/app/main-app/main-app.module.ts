@@ -22,6 +22,7 @@ import {MatTableModule} from "@angular/material/table";
 import { MemberOptionsDialogComponent } from './groups/individual-group/member-options-dialog/member-options-dialog.component';
 import { DeleteGroupDialogComponent } from './groups/individual-group/delete-group-dialog/delete-group-dialog.component';
 import { LeaveGroupDialogComponent } from './groups/individual-group/leave-group-dialog/leave-group-dialog.component';
+import { EditGroupDialogComponent } from './groups/individual-group/edit-group-dialog/edit-group-dialog.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { LeaveGroupDialogComponent } from './groups/individual-group/leave-group
     IndividualGroupComponent,
     MemberOptionsDialogComponent,
     DeleteGroupDialogComponent,
-    LeaveGroupDialogComponent
+    LeaveGroupDialogComponent,
+    EditGroupDialogComponent
   ],
   imports: [
     CommonModule,

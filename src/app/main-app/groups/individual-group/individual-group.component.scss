@@ -44,6 +44,7 @@
   justify-content: center;
   overflow-y: auto;
   max-height: 89%;
+  border-radius: 1rem;
 }
 
 .mat-mdc-table {
@@ -76,17 +77,17 @@
     border-bottom: 1px solid #3c4caa;
   }
 }
-//
-//.mat-row .mat-cell {
-//  border-bottom: 1px solid #ccd5ff;
-//  border-top: 1px solid transparent;
-//  cursor: pointer;
-//}
-//
-//.mat-row:hover .mat-cell {
-//  background-color: #d9ddf2;
-//  border-bottom: 1px solid #3c4caa;
-//}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid #ccd5ff;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  background-color: #d9ddf2;
+  border-bottom: 1px solid #3c4caa;
+}
 
 .profile-image {
   align-items: center;
@@ -111,7 +112,8 @@
 
 .group-actions {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   padding-right: 1rem;
   width: 100%;

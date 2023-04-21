@@ -5,5 +5,19 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-start;
+}
+
+.profile-image {
   align-items: center;
+  display: flex;
+  justify-content: center;
+  //background-color: #70cbbf;
+  color: #fff;
+  //border: 3px solid;
+  border-radius: 50%;
+  height: 2.5rem;
+  width: 2.5rem;
+  font-size: large;
+  font-weight: bolder;
 }

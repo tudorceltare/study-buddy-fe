@@ -1,3 +1,14 @@
 <div class="content-container">
-  <p>member-options-dialog works!</p>
+  <div style="display: flex; flex-direction: row; align-items: center">
+    <span class="profile-image" [style.background]="'linear-gradient(' + this.angleOfGradient(user.username) +'deg , '
+    + user.avatarColor + ' 0%, ' + this.invertHexColor(user.avatarColor) + ' 100%)'">
+      {{this.getAvatarInitials(user)}}
+    </span>
+    <h1 style="margin: 0 1rem;">{{this.user.firstName}} {{this.user.lastName}}</h1>
+  </div>
+  <h4 style="color: #9DA9AE; margin: 0.5rem 0 0 3.5rem;">@{{this.user.username}}</h4>
+  <p>Email: {{user.email}}</p>
+  <p>Options:</p>
+  <button mat-stroked-button (click)="this.makeAdmin()" style="margin: 0.5rem 0;">Make Admin</button>
+  <button mat-stroked-button color="warn" (click)="this.kickUser()" style="margin: 0.5rem 0;">Kick User</button>
 </div>
