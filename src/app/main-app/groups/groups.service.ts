@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Group} from "../../models/group.model";
 import {Observable} from "rxjs";
 import {GroupDetails} from "../../models/group-details.model";
@@ -19,6 +19,8 @@ export class GroupsService {
   groupWhereAdmin = environment.apiEndpoints.groupWhereAdmin;
   groupJoin = environment.apiEndpoints.groupJoin;
   groupLeave = environment.apiEndpoints.groupLeave;
+  groupKick = environment.apiEndpoints.groupKick;
+  groupPromote = environment.apiEndpoints.groupPromote;
   constructor(private http: HttpClient) { }
 
   getGroups(): Observable<Group[]> {
@@ -61,11 +63,20 @@ export class GroupsService {
     return this.http.post<Group>(this.url + this.groupLeave + groupId, null);
   }
 
-  kickUser(groupId: string, id: string) {
-    console.log(groupId, id);
+  kickUser(groupId: string, userId: string) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const body = new HttpParams()
+      .set('groupId', groupId)
+      .set('userId', userId);
+    return this.http.post(this.url + this.groupKick, body, {headers: headers});
+
   }
 
-  makeAdmin(groupId: string, id: string) {
-    console.log(groupId, id);
+  promoteToAdmin(groupId: string, userId: string) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const body = new HttpParams()
+      .set('groupId', groupId)
+      .set('userId', userId);
+    return this.http.post(this.url + this.groupPromote, body, {headers: headers});
   }
 }

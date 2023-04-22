@@ -32,27 +32,25 @@ export class MemberOptionsDialogComponent implements OnInit{
   }
 
   kickUser() {
-    // this.groupService.kickUser(this.groupId, this.user.id).subscribe(() => {
-    //   this.dialogRef.close(true);
-    //   this.sendNotification(NotificationType.INFO, "User kicked successfully");
-    // }, (errorResponse: HttpErrorResponse) => {
-    //   console.log(errorResponse.error);
-    //   this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
-    // });
+    this.groupService.kickUser(this.groupId, this.user.id).subscribe(() => {
+      this.dialogRef.close(true);
+      this.sendNotification(NotificationType.INFO, "User kicked successfully");
+    }, (errorResponse: HttpErrorResponse) => {
+      console.log(errorResponse.error);
+      this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+    });
     this.dialogRef.close(true);
-    this.sendNotification(NotificationType.INFO, "User kicked successfully");
   }
 
-  makeAdmin() {
-    // this.groupService.makeAdmin(this.groupId, this.user.id).subscribe(() => {
-    //   this.dialogRef.close(true);
-    //   this.sendNotification(NotificationType.INFO, "User made admin successfully");
-    // }, (errorResponse: HttpErrorResponse) => {
-    //   console.log(errorResponse.error);
-    //   this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
-    // });
+  promoteToAdmin() {
+    this.groupService.promoteToAdmin(this.groupId, this.user.id).subscribe(() => {
+      this.dialogRef.close(true);
+      this.sendNotification(NotificationType.INFO, "User made admin successfully");
+    }, (errorResponse: HttpErrorResponse) => {
+      console.log(errorResponse.error);
+      this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+    });
     this.dialogRef.close(true);
-    this.sendNotification(NotificationType.SUCCESS, this.user.firstName + " " + this.user.lastName + " made admin successfully");
   }
 
   getAvatarInitials(person: User) : string {

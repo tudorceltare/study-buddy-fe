@@ -41,7 +41,6 @@ export class IndividualGroupComponent implements OnInit {
     this.groupService.getGroupWithId(this.groupId).subscribe((result) => {
       this.group = result;
       this.checkIfAdmin()
-      console.log(this.group);
     });
     this.loading = false;
   }
@@ -50,6 +49,8 @@ export class IndividualGroupComponent implements OnInit {
     const user: User | null = this.authenticationService.getUserFromLocalCache();
     if (this.group!.admin.id === user!.id) {
       this.authUserIsAdmin = true;
+    } else {
+      this.authUserIsAdmin = false;
     }
   }
 

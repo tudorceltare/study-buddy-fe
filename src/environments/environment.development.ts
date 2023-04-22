@@ -14,5 +14,7 @@ export const environment = {
     groupWhereAdmin: "groups/where-admin/",
     groupJoin: "groups/join/",
     groupLeave: "groups/leave/",
+    groupKick: "groups/kick/",
+    groupPromote: "groups/promote/",
   }
 };
