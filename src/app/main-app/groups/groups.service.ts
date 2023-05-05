@@ -21,6 +21,8 @@ export class GroupsService {
   groupLeave = environment.apiEndpoints.groupLeave;
   groupKick = environment.apiEndpoints.groupKick;
   groupPromote = environment.apiEndpoints.groupPromote;
+  groupAddMeetingDates = environment.apiEndpoints.groupAddMeetingDates;
+  groupRemoveMeetingDates = environment.apiEndpoints.groupRemoveMeetingDates;
   constructor(private http: HttpClient) { }
 
   getGroups(): Observable<Group[]> {
@@ -78,5 +80,13 @@ export class GroupsService {
       .set('groupId', groupId)
       .set('userId', userId);
     return this.http.post(this.url + this.groupPromote, body, {headers: headers});
+  }
+
+  addMeetingDate(groupId: string, meetingDates: Date[]) {
+    return this.http.post(this.url + this.groupAddMeetingDates, {groupId: groupId, meetingDates: meetingDates});
+  }
+
+  removeMeetingDate(groupId: string, meetingDates: Date[]) {
+    return this.http.post(this.url + this.groupRemoveMeetingDates, {groupId: groupId, meetingDates: meetingDates});
   }
 }

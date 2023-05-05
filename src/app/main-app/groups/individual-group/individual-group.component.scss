@@ -14,7 +14,7 @@
   padding: 25px;
   margin: 20px;
   flex-grow: 1;
-  //overflow: auto;
+  overflow: auto;
 }
 
 .spinner {
@@ -31,7 +31,6 @@
 .row {
   display: flex;
   flex-direction: row;
-  height: 100%;
 
   .column {
     padding: 1rem;

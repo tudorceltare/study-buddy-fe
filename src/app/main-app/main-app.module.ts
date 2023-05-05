@@ -13,7 +13,7 @@ import { GroupsComponent } from './groups/groups.component';
 import {MatChipsModule} from "@angular/material/chips";
 import { AddGroupDialogComponent } from './groups/add-group-dialog/add-group-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { IndividualGroupComponent } from './groups/individual-group/individual-group.component';
@@ -23,6 +23,16 @@ import { MemberOptionsDialogComponent } from './groups/individual-group/member-o
 import { DeleteGroupDialogComponent } from './groups/individual-group/delete-group-dialog/delete-group-dialog.component';
 import { LeaveGroupDialogComponent } from './groups/individual-group/leave-group-dialog/leave-group-dialog.component';
 import { EditGroupDialogComponent } from './groups/individual-group/edit-group-dialog/edit-group-dialog.component';
+import { MeetingsCalendarComponent } from './groups/individual-group/meetings-calendar/meetings-calendar.component';
+import {CalendarModule, DateAdapter} from "angular-calendar";
+import {adapterFactory} from "angular-calendar/date-adapters/moment";
+import { ScheduleCalendarComponent } from './schedule-calendar/schedule-calendar.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatCardModule} from "@angular/material/card";
+import {MatMenuModule} from "@angular/material/menu";
+import {NgxMultipleDatesModule} from "ngx-multiple-dates";
 
 
 @NgModule({
@@ -35,9 +45,12 @@ import { EditGroupDialogComponent } from './groups/individual-group/edit-group-d
     MemberOptionsDialogComponent,
     DeleteGroupDialogComponent,
     LeaveGroupDialogComponent,
-    EditGroupDialogComponent
+    EditGroupDialogComponent,
+    MeetingsCalendarComponent,
+    ScheduleCalendarComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     CommonModule,
     MainAppRoutingModule,
     MatButtonModule,
@@ -48,7 +61,17 @@ import { EditGroupDialogComponent } from './groups/individual-group/edit-group-d
     MatInputModule,
     MatButtonToggleModule,
     MatProgressSpinnerModule,
-    MatTableModule
+    MatTableModule,
+    MatNativeDateModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    FormsModule,
+    MatDatepickerModule,
+    MatCardModule,
+    MatMenuModule,
+    // NgxMultipleDatesModule,
   ],
   exports: [
     SidenavComponent

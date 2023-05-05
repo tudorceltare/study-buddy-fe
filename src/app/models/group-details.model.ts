@@ -7,4 +7,5 @@ export interface GroupDetails {
   location: string;
   admin: User;
   members: User[];
+  meetingDates: Date[];
 }

@@ -63,10 +63,11 @@
               <p><b>Location: </b>{{group.location}}</p>
               <i class="fal fa-map-marker-alt"></i>
             </div>
-<!--            <div class="info-with-icon-right">-->
-<!--              <p><b>Be there on: </b>{{group.date.toLocaleString()}}</p>-->
-<!--              <i class="fal fa-calendar-alt"></i>-->
-<!--            </div>-->
+            <div class="info-with-icon-right">
+              <p *ngIf="group.nextMeetingDate"><b>Be there on: </b>{{group.nextMeetingDate | date: 'dd/MM/yyyy HH:mm'}}</p>
+              <p *ngIf="!group.nextMeetingDate"><b>Be there on: </b>No next meeting set</p>
+              <i class="fal fa-calendar-alt"></i>
+            </div>
 <!--            <div class="chips-container">-->
 <!--              <mat-chip-listbox>-->
 <!--                <mat-chip *ngFor="let interest of group.interests">-->

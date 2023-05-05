@@ -6,6 +6,7 @@ import {RoleGuard} from "../guard/role.guard";
 import {GroupsComponent} from "./groups/groups.component";
 import {AuthenticationGuard} from "../guard/authentication.guard";
 import {IndividualGroupComponent} from "./groups/individual-group/individual-group.component";
+import {ScheduleCalendarComponent} from "./schedule-calendar/schedule-calendar.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
       {
         path: 'groups/:id',
         component: IndividualGroupComponent,
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'calendar',
+        component: ScheduleCalendarComponent,
         canActivate: [RoleGuard]
       }
     ]

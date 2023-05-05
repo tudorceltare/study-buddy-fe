@@ -23,6 +23,7 @@ export class IndividualGroupComponent implements OnInit {
   group!: GroupDetails | undefined;
   loading: boolean = false;
   authUserIsAdmin: boolean = false;
+  nextMeetingDatesEmpty: boolean = true;
   displayedColumns: string[] = ['avatar', 'firstname', 'lastname', 'username', 'email', 'options'];
 
   constructor(
@@ -43,6 +44,21 @@ export class IndividualGroupComponent implements OnInit {
       this.checkIfAdmin()
     });
     this.loading = false;
+  }
+
+  getNextMeetingDate(): Date | null {
+    const now = new Date();
+    let nextMeetingDate = null;
+    this.nextMeetingDatesEmpty = true;
+    for(let i = 0; i < this.group!.meetingDates.length; i++) {
+      let meetingDate = new Date(this.group!.meetingDates[i]);
+      if(meetingDate.getTime() > now.getTime()) {
+        nextMeetingDate = meetingDate;
+        this.nextMeetingDatesEmpty = false;
+        break;
+      }
+    }
+    return nextMeetingDate;
   }
 
   checkIfAdmin() {

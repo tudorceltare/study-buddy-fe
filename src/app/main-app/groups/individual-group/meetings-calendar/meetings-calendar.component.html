@@ -1,0 +1,35 @@
+<div *ngIf="authUserIsAdmin">
+  <mat-form-field appearance="outline" [formGroup]="groupDate">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="datepicker" formControlName="selectedDay">
+    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+    <mat-datepicker #datepicker touchUi>
+      <mat-datepicker-actions>
+        <button mat-button matDatepickerCancel>Cancel</button>
+        <button mat-raised-button color="primary" matDatepickerApply (click)="addMeetingDate()">Apply</button>
+      </mat-datepicker-actions>
+    </mat-datepicker>
+  </mat-form-field>
+</div>
+<div *ngIf="meetings.length > 0">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> All Meeting Dates </th>
+      <td mat-cell *matCellDef="let element"> {{element.date | date: 'dd/MM/yyyy HH:mm'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="authUserIsAdmin" style="text-align: right">
+          <button mat-icon-button color="warn" (click)="deleteMeetingDate(element.date)">
+            <i class="fal fa-trash-alt"></i>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row="" *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlighted': row.isPast}"></tr>
+  </table>
+</div>

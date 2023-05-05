@@ -3,16 +3,29 @@
 
     <div *ngIf="group != undefined" class="row">
       <div class="column">
-        <h1>{{this.group.name}}</h1>
-        <p style="color: rgba(0, 0, 0, 0.5)">{{this.group.description}}</p>
+        <h1>{{this.group!.name}}</h1>
+        <p style="color: rgba(0, 0, 0, 0.5)">{{this.group!.description}}</p>
         <div class="info-with-icon-right">
           <p><b>Location: </b>
           </p>
-          <div style="width: 50%; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly">
-            <p>{{this.group.location}}</p>
+          <div style="width: 50%; display: flex; flex-direction: row; align-items: center; justify-content: flex-end">
+            <p style="margin-right: 1rem">{{this.group!.location}}</p>
             <i class="fal fa-map-marker-alt"></i>
           </div>
         </div>
+        <div class="info-with-icon-right">
+          <p><b>Next Meeting: </b>
+          </p>
+          <div style="width: 50%; display: flex; flex-direction: row; align-items: center; justify-content: flex-end" *ngIf="!nextMeetingDatesEmpty">
+            <p style="margin-right: 1rem">{{this.getNextMeetingDate() | date: 'dd/MM/yyyy HH:mm'}}</p>
+            <i class="fal fa-calendar-alt"></i>
+          </div>
+          <div style="width: 50%; display: flex; flex-direction: row; align-items: center; justify-content: flex-end" *ngIf="nextMeetingDatesEmpty">
+            <p style="margin-right: 1rem">No meetings set</p>
+            <i class="fal fa-calendar-alt"></i>
+          </div>
+        </div>
+        <app-meetings-calendar [meetings]="group!.meetingDates" [authUserIsAdmin]="authUserIsAdmin" [groupId]="groupId" (refresh)="ngOnInit()"></app-meetings-calendar>
       </div>
       <div class="column">
         <div class="group-actions">
@@ -35,7 +48,7 @@
         </div>
         <h3>Members:</h3>
         <div class="table-container mat-elevation-z1">
-          <table mat-table [dataSource]="group.members">
+          <table mat-table [dataSource]="group!.members">
             <ng-container matColumnDef="avatar">
               <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let element">
