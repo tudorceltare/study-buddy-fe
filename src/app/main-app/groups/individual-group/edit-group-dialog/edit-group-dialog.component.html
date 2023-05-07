@@ -1,24 +1,46 @@
 <div class="content-container">
   <h1>Edit Group</h1>
   <form [formGroup]="formGroup" (ngSubmit)="editGroup()" style="width: 90%;">
-    <p><b>Current Name:</b> {{this.group.name}}</p>
+    <p><b>Current Name:</b> {{this.displayGroup.name}}</p>
     <p>
       <mat-form-field appearance="outline">
         <input type="text" matInput placeholder="Name" formControlName="name">
       </mat-form-field>
     </p>
-    <p><b>Current Description:</b> {{this.group.description}}</p>
+    <p><b>Current Description:</b> {{this.displayGroup.description}}</p>
     <p>
       <mat-form-field appearance="outline" style="flex: 1; display: flex">
         <textarea type="text" matInput placeholder="Description" formControlName="description"></textarea>
       </mat-form-field>
     </p>
-    <p><b>Current Location:</b> {{this.group.location}}</p>
+    <p><b>Current Location:</b> {{this.displayGroup.location}}</p>
     <p>
       <mat-form-field appearance="outline">
         <input type="text" matInput placeholder="Location" formControlName="location">
       </mat-form-field>
     </p>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Topics: </mat-label>
+      <mat-chip-grid #chipGrid aria-label="Fruit selection">
+        <mat-chip-row *ngFor="let topic of topics" (removed)="removeTopic(topic)">
+          {{capitalize(topic.name)}}
+          <button matChipRemove [attr.aria-label]="'remove ' + topic">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input placeholder="New Topic..." #topicInput formControlName="topicsControl"
+             [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             (matChipInputTokenEnd)="addTopic($event)"/>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let topic of allTopics" [value]="topic">
+          {{topic.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
     <button mat-stroked-button type="submit" class="btn btn-primary" [disabled]="formGroup.invalid">Submit</button>
   </form>
 </div>
