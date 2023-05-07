@@ -16,6 +16,28 @@
         <input type="text" matInput placeholder="Location" formControlName="location">
       </mat-form-field>
     </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Topics: </mat-label>
+        <mat-chip-grid #chipGrid aria-label="Fruit selection">
+          <mat-chip-row *ngFor="let topic of topics" (removed)="removeTopic(topic)">
+            {{capitalize(topic.name)}}
+            <button matChipRemove [attr.aria-label]="'remove ' + topic">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input placeholder="New Topic..." #topicInput formControlName="topicsControl"
+               [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               (matChipInputTokenEnd)="addTopic($event)"/>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let topic of allTopics" [value]="topic">
+            {{topic.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </p>
     <button mat-stroked-button type="submit" class="btn btn-primary" [disabled]="formGroup.invalid">Submit</button>
   </form>
 </div>

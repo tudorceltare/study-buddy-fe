@@ -60,7 +60,7 @@ export class EditGroupDialogComponent implements OnInit, OnDestroy {
       this.topics = [...this.group.topics];
       this.filteredTopics = this.formGroup.get('topicsControl')!.valueChanges.pipe(
         startWith(null),
-        map((topic: string | null) => topic ? this._filter (topic) : this.allTopics.slice())
+        map((topicName: string | null) => topicName ? this._filter (topicName) : this.allTopics.slice())
       );
     }
   }
@@ -77,9 +77,6 @@ export class EditGroupDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log(this.topics);
-    console.log("Group obj Topics ");
-    console.log(this.group.topics);
     this.topics = [];
   }
 
@@ -119,10 +116,12 @@ export class EditGroupDialogComponent implements OnInit, OnDestroy {
     if (value) {
       let topic: Topic = {
         id: '',
-        name: value,
+        name: value.toLowerCase(),
         description: ''
       }
-      this.topics.push(topic);
+      if (!this.topics.includes(topic)) {
+        this.topics.push(topic);
+      }
     }
     input!.clear();
     this.formGroup.get('topicsControl')?.setValue(null);
@@ -136,7 +135,9 @@ export class EditGroupDialogComponent implements OnInit, OnDestroy {
   }
 
   selected($event: MatAutocompleteSelectedEvent) {
-    this.topics.push($event.option.value);
+    if (!this.topics.includes($event.option.value)){
+      this.topics.push($event.option.value);
+    }
     this.topicInput.nativeElement.value = '';
     this.formGroup.get('topicsControl')?.setValue(null);
   }
