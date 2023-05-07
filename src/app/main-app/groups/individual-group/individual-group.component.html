@@ -25,6 +25,13 @@
             <i class="fal fa-calendar-alt"></i>
           </div>
         </div>
+        <div>
+          <mat-chip-listbox>
+            <mat-chip *ngFor="let topic of group!.topics">
+              {{capitalize(topic.name)}}
+            </mat-chip>
+          </mat-chip-listbox>
+        </div>
         <app-meetings-calendar [meetings]="group!.meetingDates" [authUserIsAdmin]="authUserIsAdmin" [groupId]="groupId" (refresh)="ngOnInit()"></app-meetings-calendar>
       </div>
       <div class="column">

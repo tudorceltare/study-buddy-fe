@@ -24,16 +24,13 @@ import { DeleteGroupDialogComponent } from './groups/individual-group/delete-gro
 import { LeaveGroupDialogComponent } from './groups/individual-group/leave-group-dialog/leave-group-dialog.component';
 import { EditGroupDialogComponent } from './groups/individual-group/edit-group-dialog/edit-group-dialog.component';
 import { MeetingsCalendarComponent } from './groups/individual-group/meetings-calendar/meetings-calendar.component';
-import {CalendarModule, DateAdapter} from "angular-calendar";
-import {adapterFactory} from "angular-calendar/date-adapters/moment";
 import { ScheduleCalendarComponent } from './schedule-calendar/schedule-calendar.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatCardModule} from "@angular/material/card";
 import {MatMenuModule} from "@angular/material/menu";
-import {NgxMultipleDatesModule} from "ngx-multiple-dates";
-
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [
@@ -63,15 +60,11 @@ import {NgxMultipleDatesModule} from "ngx-multiple-dates";
     MatProgressSpinnerModule,
     MatTableModule,
     MatNativeDateModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
     FormsModule,
     MatDatepickerModule,
     MatCardModule,
     MatMenuModule,
-    // NgxMultipleDatesModule,
+    MatAutocompleteModule,
   ],
   exports: [
     SidenavComponent

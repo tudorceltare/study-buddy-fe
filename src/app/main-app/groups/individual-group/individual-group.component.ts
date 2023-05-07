@@ -63,11 +63,7 @@ export class IndividualGroupComponent implements OnInit {
 
   checkIfAdmin() {
     const user: User | null = this.authenticationService.getUserFromLocalCache();
-    if (this.group!.admin.id === user!.id) {
-      this.authUserIsAdmin = true;
-    } else {
-      this.authUserIsAdmin = false;
-    }
+    this.authUserIsAdmin = this.group!.admin.id === user!.id;
   }
 
   checkIfElementIsAdmin(element: User) {
@@ -196,6 +192,10 @@ export class IndividualGroupComponent implements OnInit {
         }
       }
     );
+  }
+
+  capitalize(str: string): string {
+    return str.replace(/\b\w/g, (char: string) => char.toUpperCase());
   }
 }
 

@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Group} from "../../models/group.model";
 import {Observable} from "rxjs";
 import {GroupDetails} from "../../models/group-details.model";
+import {Topic} from "../../models/topic.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class GroupsService {
   groupPromote = environment.apiEndpoints.groupPromote;
   groupAddMeetingDates = environment.apiEndpoints.groupAddMeetingDates;
   groupRemoveMeetingDates = environment.apiEndpoints.groupRemoveMeetingDates;
+  topics = environment.apiEndpoints.topics;
   constructor(private http: HttpClient) { }
 
   getGroups(): Observable<Group[]> {
@@ -88,5 +90,9 @@ export class GroupsService {
 
   removeMeetingDate(groupId: string, meetingDates: Date[]) {
     return this.http.post(this.url + this.groupRemoveMeetingDates, {groupId: groupId, meetingDates: meetingDates});
+  }
+
+  getTopics() {
+    return this.http.get<Topic[]>(this.url + this.topics);
   }
 }

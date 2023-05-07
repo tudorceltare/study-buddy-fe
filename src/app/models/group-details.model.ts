@@ -1,4 +1,5 @@
 import {User} from "./user.model";
+import {Topic} from "./topic.model";
 
 export interface GroupDetails {
   id: string;
@@ -8,4 +9,5 @@ export interface GroupDetails {
   admin: User;
   members: User[];
   meetingDates: Date[];
+  topics: Topic[];
 }

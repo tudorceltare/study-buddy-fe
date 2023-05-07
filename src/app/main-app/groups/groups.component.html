@@ -1,7 +1,7 @@
 <div class="group-header-wrapper">
   <div class="group-header-container content-card">
     <div class="header-content-left">
-<!--      <span>Filters: </span>-->
+      <span>Filters: </span>
       <mat-button-toggle-group class="button-toggle" [formControl]="groupsControl" (change)="loadGroups()">
         <mat-button-toggle value="all">All</mat-button-toggle>
         <mat-button-toggle value="admin">Where Admin</mat-button-toggle>
@@ -21,34 +21,6 @@
 <div class="content-wrapper">
   <div class="content-container content-card">
     <div class="panels">
-<!--      <div class="card" *ngFor="let data of this.dummyData">-->
-<!--        <div class="anything-else">-->
-<!--          <div class="tool-card-header">-->
-<!--        <span>-->
-<!--          {{data.name}}-->
-<!--        </span>-->
-<!--          </div>-->
-<!--          <hr class="line-style">-->
-<!--          <div class="tool-card-content">-->
-<!--            <p>{{data.description}}</p>-->
-<!--            <div class="info-with-icon-right">-->
-<!--              <p><b>Location: </b>{{data.location}}</p>-->
-<!--              <i class="fal fa-map-marker-alt"></i>-->
-<!--            </div>-->
-<!--            <div class="info-with-icon-right">-->
-<!--              <p><b>Be there on: </b>{{data.date.toLocaleString()}}</p>-->
-<!--              <i class="fal fa-calendar-alt"></i>-->
-<!--            </div>-->
-<!--            <div class="chips-container">-->
-<!--              <mat-chip-listbox>-->
-<!--                <mat-chip *ngFor="let interest of data.interests">-->
-<!--                  {{interest}}-->
-<!--                </mat-chip>-->
-<!--              </mat-chip-listbox>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
       <div class="card" *ngFor="let group of this.groups" (click)="clickOnCard(group.id)">
         <div class="anything-else">
           <div class="tool-card-header">
@@ -68,13 +40,13 @@
               <p *ngIf="!group.nextMeetingDate"><b>Be there on: </b>No next meeting set</p>
               <i class="fal fa-calendar-alt"></i>
             </div>
-<!--            <div class="chips-container">-->
-<!--              <mat-chip-listbox>-->
-<!--                <mat-chip *ngFor="let interest of group.interests">-->
-<!--                  {{interest}}-->
-<!--                </mat-chip>-->
-<!--              </mat-chip-listbox>-->
-<!--            </div>-->
+            <div class="chips-container">
+              <mat-chip-listbox>
+                <mat-chip *ngFor="let topic of group.topics">
+                  {{capitalize(topic.name)}}
+                </mat-chip>
+              </mat-chip-listbox>
+            </div>
           </div>
         </div>
       </div>
