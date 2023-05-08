@@ -1,7 +1,13 @@
-.mat-mdc-row.highlighted {
-  background-color: rgb(255, 0, 0, 0.05);
+.table-container {
+  margin-top: 1rem;
+  overflow-y: auto;
+  max-height: 89%;
+  border-radius: 1rem;
 }
 
-.mat-mdc-row.highlighted:hover {
+.mat-mdc-row.highlighted {
   background-color: rgb(255, 0, 0, 0.05);
+  .mat-mdc-table &:hover {
+    background-color: rgb(255, 0, 0, 0.05);
+  }
 }

@@ -23,7 +23,7 @@ export class IndividualGroupComponent implements OnInit {
   group!: GroupDetails | undefined;
   loading: boolean = false;
   authUserIsAdmin: boolean = false;
-  nextMeetingDatesEmpty: boolean = true;
+  nextMeetingDatesEmpty: boolean = false;
   displayedColumns: string[] = ['avatar', 'firstname', 'lastname', 'username', 'email', 'options'];
 
   constructor(
@@ -37,6 +37,7 @@ export class IndividualGroupComponent implements OnInit {
     this.loggedInUser = <User>this.authenticationService.getUserFromLocalCache();
   }
   ngOnInit(): void {
+    this.group = undefined;
     this.loading = true;
     this.groupId = this.route.snapshot.params['id'];
     this.groupService.getGroupWithId(this.groupId).subscribe((result) => {
@@ -128,7 +129,6 @@ export class IndividualGroupComponent implements OnInit {
     this.groupService.joinGroup(this.groupId).subscribe(() => {
       this.sendNotification(NotificationType.SUCCESS, "You have successfully joined the group");
       this.ngOnInit();
-      console.log(this.group?.members);
     });
   }
 
@@ -140,7 +140,6 @@ export class IndividualGroupComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       status => {
         if(status) {
-          console.log("status");
           this.router.navigateByUrl('groups')
         }
       });
@@ -154,7 +153,6 @@ export class IndividualGroupComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       status => {
         if(status) {
-          console.log("status");
           this.router.navigateByUrl('groups')
         }
       });

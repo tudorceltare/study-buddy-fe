@@ -17,14 +17,14 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./meetings-calendar.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class MeetingsCalendarComponent implements OnInit, OnChanges {
+export class MeetingsCalendarComponent implements OnInit{
   @Input() meetings: Date[] = [];
   @Input() authUserIsAdmin: boolean = false;
   @Input() groupId!: string;
   @Output() refresh = new EventEmitter();
   displayedColumns: string[] = ['date', 'delete'];
   dataSource:{ date: Date; isPast: boolean; }[] = [];
-  groupDate = new FormGroup({
+  dateFormGroup = new FormGroup({
     selectedDay: new FormControl<Date | null>(null)
   });
 
@@ -36,30 +36,19 @@ export class MeetingsCalendarComponent implements OnInit, OnChanges {
         let meetingDate = new Date(this.meetings[i]);
         this.dataSource.push({date: meetingDate, isPast: meetingDate.getTime() < now.getTime()});
       }
-      console.log('calendar component');
-      console.log(this.dataSource);
     }
   }
 
-  ngOnChanges(): void {
-    this.ngOnInit();
-  }
-
   addMeetingDate() {
-    console.log(this.groupDate.value.selectedDay);
-    let dates: Date[] = [<Date>this.groupDate.value.selectedDay];
-    console.log(dates);
+    let dates: Date[] = [<Date>this.dateFormGroup.value.selectedDay];
     this.groupService.addMeetingDate(this.groupId, dates).subscribe((result) => {
-      console.log(result);
       this.refresh.emit();
     });
   }
 
   deleteMeetingDate(element:any) {
-    console.log(element);
     let dates: Date[] = [element];
     this.groupService.removeMeetingDate(this.groupId, dates).subscribe((result) => {
-      console.log(result);
       this.refresh.emit();
     });
   }
