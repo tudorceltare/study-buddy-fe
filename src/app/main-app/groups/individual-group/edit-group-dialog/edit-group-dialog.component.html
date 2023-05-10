@@ -19,6 +19,19 @@
         <input type="text" matInput placeholder="Location" formControlName="location">
       </mat-form-field>
     </p>
+    <div style="background-color: #3c4b5f; height: 30rem; width: 100%; margin: 2rem 0">
+      <google-map
+        height="100%"
+        width="100%"
+        [center]="center"
+        [zoom]="zoom"
+        (mapClick)="addMarker($event)"
+        (mapMousemove)="move($event)">
+        <map-marker [position]="markerPosition" [options]="markerOptions"></map-marker>
+      </google-map>
+    </div>
+    <p>Latitude: {{markerPosition?.lat}}</p>
+    <p>Longitude: {{markerPosition?.lng}}</p>
 
     <mat-form-field appearance="outline">
       <mat-label>Topics: </mat-label>

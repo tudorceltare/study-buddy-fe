@@ -8,15 +8,8 @@ import {NotificationType} from "../../../models/notificationType.enum";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Topic} from "../../../models/topic.model";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {map, Observable, startWith} from "rxjs";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
-
-export interface CreateGroupDTO {
-  name: string;
-  description: string;
-  location: string;
-}
 
 @Component({
   selector: 'app-add-group-dialog',
@@ -34,6 +27,20 @@ export class AddGroupDialogComponent implements OnInit, OnDestroy{
   topics: Topic[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   allTopics: Topic[] = [];
+
+  display: any;
+  center: google.maps.LatLngLiteral = {
+    lat: 24,
+    lng: 12
+  };
+  zoom = 4;
+  options: google.maps.MapOptions = {
+    mapTypeId: 'hybrid',
+  }
+  markerOptions: google.maps.MarkerOptions = {
+    draggable: false,
+  }
+  markerPosition!: google.maps.LatLngLiteral;
 
   constructor(
     private groupService: GroupsService,
@@ -57,12 +64,17 @@ export class AddGroupDialogComponent implements OnInit, OnDestroy{
     this.topics = [];
   }
 
-  creatGroup() {
+  createGroup() {
     let group: Group = {
       id: '',
       name: this.formGroup.get('name')!.value,
       description: this.formGroup.get('description')!.value,
-      location: this.formGroup.get('location')!.value,
+      location: {
+        id: '',
+        name: this.formGroup.get('location')!.value,
+        latitude: this.markerPosition.lat,
+        longitude: this.markerPosition.lng
+      },
       nextMeetingDate: new Date(),
       topics: this.topics
     }
@@ -120,5 +132,13 @@ export class AddGroupDialogComponent implements OnInit, OnDestroy{
   }
   capitalize(str: string): string {
     return str.replace(/\b\w/g, (char: string) => char.toUpperCase());
+  }
+
+  move(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) this.display = event.latLng.toJSON();
+  }
+
+  addMarker(event: google.maps.MapMouseEvent) {
+    if(event.latLng != null) this.markerPosition = event.latLng.toJSON();
   }
 }

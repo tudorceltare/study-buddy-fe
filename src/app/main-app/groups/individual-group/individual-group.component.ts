@@ -26,10 +26,7 @@ export class IndividualGroupComponent implements OnInit {
   nextMeetingDatesEmpty: boolean = false;
   displayedColumns: string[] = ['avatar', 'firstname', 'lastname', 'username', 'email', 'options'];
 
-  center: google.maps.LatLngLiteral = {
-    lat: 24,
-    lng: 12
-  };
+  center!: google.maps.LatLngLiteral;
   zoom = 4;
   markerOptions: google.maps.MarkerOptions = {
     draggable: false,
@@ -58,8 +55,8 @@ export class IndividualGroupComponent implements OnInit {
         lng: this.group!.location.longitude
       }
       this.center = this.markerPosition;
+      this.loading = false;
     });
-    this.loading = false;
   }
 
   getNextMeetingDate(): Date | null {
@@ -197,6 +194,7 @@ export class IndividualGroupComponent implements OnInit {
     dialogConfig.data = { group: this.group };
     dialogConfig.autoFocus = false;
     dialogConfig.disableClose = false;
+    dialogConfig.height = '90%';
     const dialogRef = this.dialog.open(EditGroupDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
       status => {

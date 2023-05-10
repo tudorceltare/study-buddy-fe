@@ -11,6 +11,7 @@ import {Topic} from "../../../../models/topic.model";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {map, Observable, startWith} from "rxjs";
+import {Location} from "../../../../models/location.model";
 
 @Component({
   selector: 'app-edit-group-dialog',
@@ -32,7 +33,6 @@ export class EditGroupDialogComponent implements OnInit, OnDestroy {
   allTopics: Topic[] = [];
   filteredTopics!: Observable<Topic[]>;
 
-
   group!: Group;
   displayGroup!: {
     id: string,
@@ -41,6 +41,21 @@ export class EditGroupDialogComponent implements OnInit, OnDestroy {
     location: string,
     topicNames: string[]
   };
+
+  display: any;
+  center: google.maps.LatLngLiteral = {
+    lat: 24,
+    lng: 12
+  };
+  zoom = 10;
+  options: google.maps.MapOptions = {
+    mapTypeId: 'hybrid',
+  }
+  markerOptions: google.maps.MarkerOptions = {
+    draggable: false,
+  }
+  markerPosition!: google.maps.LatLngLiteral;
+
   constructor(
     private groupService: GroupsService,
     private dialogRef: MatDialogRef<EditGroupDialogComponent>,
@@ -53,9 +68,14 @@ export class EditGroupDialogComponent implements OnInit, OnDestroy {
         id: this.group.id,
         name: this.group.name,
         description: this.group.description,
-        location: this.group.location,
+        location: this.group.location.name,
         topicNames: this.group.topics.map(topic => topic.name)
       }
+      this.markerPosition = {
+        lat: this.group!.location.latitude,
+        lng: this.group!.location.longitude
+      }
+      this.center = this.markerPosition;
       this.formGroup.patchValue(this.displayGroup);
       this.topics = [...this.group.topics];
       this.filteredTopics = this.formGroup.get('topicsControl')!.valueChanges.pipe(
@@ -85,7 +105,12 @@ export class EditGroupDialogComponent implements OnInit, OnDestroy {
       id: this.formGroup.get('id')!.value,
       name: this.formGroup.get('name')!.value,
       description: this.formGroup.get('description')!.value,
-      location: this.formGroup.get('location')!.value,
+      location: {
+        id: this.group.location.id,
+        name: this.formGroup.get('location')!.value,
+        latitude: this.markerPosition.lat,
+        longitude: this.markerPosition.lng
+      },
       nextMeetingDate: new Date(),
       topics: this.topics
     }
@@ -149,5 +174,13 @@ export class EditGroupDialogComponent implements OnInit, OnDestroy {
 
   capitalize(str: string): string {
     return str.replace(/\b\w/g, (char: string) => char.toUpperCase());
+  }
+
+  move(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) this.display = event.latLng.toJSON();
+  }
+
+  addMarker(event: google.maps.MapMouseEvent) {
+    if(event.latLng != null) this.markerPosition = event.latLng.toJSON();
   }
 }

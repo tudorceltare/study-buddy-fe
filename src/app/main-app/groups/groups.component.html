@@ -1,5 +1,5 @@
 <div class="group-header-wrapper">
-  <div class="group-header-container content-card">
+  <div class="group-header-container content-card mat-elevation-z2">
     <div class="header-content-left">
       <span>Filters: </span>
       <mat-button-toggle-group class="button-toggle" [formControl]="groupsControl" (change)="loadGroups()">
@@ -19,7 +19,7 @@
 </div>
 
 <div class="content-wrapper">
-  <div class="content-container content-card">
+  <div class="content-container content-card mat-elevation-z2">
     <div class="panels">
       <div class="card" *ngFor="let group of this.groups" (click)="clickOnCard(group.id)">
         <div class="anything-else">
