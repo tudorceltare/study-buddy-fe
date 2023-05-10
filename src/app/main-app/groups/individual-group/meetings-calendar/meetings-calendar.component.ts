@@ -9,6 +9,8 @@ import {
 } from '@angular/core';
 import {GroupsService} from "../../groups.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {NotificationType} from "../../../../models/notificationType.enum";
+import {NotificationService} from "../../../../service/notification.service";
 
 @Component({
   selector: 'app-meetings-calendar',
@@ -28,7 +30,7 @@ export class MeetingsCalendarComponent implements OnInit{
     selectedDay: new FormControl<Date | null>(null)
   });
 
-  constructor(private groupService: GroupsService) { }
+  constructor(private groupService: GroupsService, private notificationService: NotificationService) { }
   ngOnInit(): void {
     if(this.meetings.length > 0) {
       const now = new Date();
@@ -43,6 +45,8 @@ export class MeetingsCalendarComponent implements OnInit{
     let dates: Date[] = [<Date>this.dateFormGroup.value.selectedDay];
     this.groupService.addMeetingDate(this.groupId, dates).subscribe((result) => {
       this.refresh.emit();
+    }, error => {
+      this.sendNotification(NotificationType.ERROR, error.error.message);
     });
   }
 
@@ -50,6 +54,16 @@ export class MeetingsCalendarComponent implements OnInit{
     let dates: Date[] = [element];
     this.groupService.removeMeetingDate(this.groupId, dates).subscribe((result) => {
       this.refresh.emit();
+    }, error => {
+      this.sendNotification(NotificationType.ERROR, error.error.message);
     });
+  }
+
+  private sendNotification(notificationType: NotificationType, message: string) {
+    if (message) {
+      this.notificationService.notify(notificationType, message);
+    } else {
+      this.notificationService.notify(notificationType, "An error occurred. Please try again");
+    }
   }
 }
