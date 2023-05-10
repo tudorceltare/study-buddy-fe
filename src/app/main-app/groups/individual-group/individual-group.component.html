@@ -9,7 +9,7 @@
           <p><b>Location: </b>
           </p>
           <div style="width: 50%; display: flex; flex-direction: row; align-items: center; justify-content: flex-end">
-            <p style="margin-right: 1rem">{{this.group!.location}}</p>
+            <p style="margin-right: 1rem">{{this.group!.location.name}}</p>
             <i class="fal fa-map-marker-alt"></i>
           </div>
         </div>
@@ -92,6 +92,16 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
+        </div>
+        <div style="height: 100%; margin-top: 2rem; padding: 1rem; border-radius: 1rem; background-color: #8499b1" class="mat-elevation-z1">
+          <google-map
+            height="100%"
+            width="100%"
+            [center]="center"
+            [zoom]="zoom"
+          >
+            <map-marker [position]="markerPosition" [label]="this.group!.location.name"></map-marker>
+          </google-map>
         </div>
       </div>
     </div>

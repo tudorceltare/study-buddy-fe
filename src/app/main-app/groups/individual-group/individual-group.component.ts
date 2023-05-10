@@ -26,6 +26,16 @@ export class IndividualGroupComponent implements OnInit {
   nextMeetingDatesEmpty: boolean = false;
   displayedColumns: string[] = ['avatar', 'firstname', 'lastname', 'username', 'email', 'options'];
 
+  center: google.maps.LatLngLiteral = {
+    lat: 24,
+    lng: 12
+  };
+  zoom = 4;
+  markerOptions: google.maps.MarkerOptions = {
+    draggable: false,
+  }
+  markerPosition!: google.maps.LatLngLiteral;
+
   constructor(
     private router: Router,
     private dialog: MatDialog,
@@ -43,6 +53,11 @@ export class IndividualGroupComponent implements OnInit {
     this.groupService.getGroupWithId(this.groupId).subscribe((result) => {
       this.group = result;
       this.checkIfAdmin()
+      this.markerPosition = {
+        lat: this.group!.location.latitude,
+        lng: this.group!.location.longitude
+      }
+      this.center = this.markerPosition;
     });
     this.loading = false;
   }

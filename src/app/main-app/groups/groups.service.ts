@@ -5,6 +5,7 @@ import {Group} from "../../models/group.model";
 import {Observable} from "rxjs";
 import {GroupDetails} from "../../models/group-details.model";
 import {Topic} from "../../models/topic.model";
+import {Location} from "../../models/location.model";
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,7 @@ export class GroupsService {
     return this.http.get<Group>(this.url + this.groupMembers + groupId);
   }
 
-  createGroup(group: {name: string; description: string; location: string;}): Observable<Group> {
+  createGroup(group: Group): Observable<Group> {
     return this.http.post<Group>(this.url + this.groupCreate, group);
   }
 
