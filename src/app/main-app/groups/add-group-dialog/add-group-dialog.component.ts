@@ -55,7 +55,7 @@ export class AddGroupDialogComponent implements OnInit, OnDestroy{
         this.allTopics = response;
       }, (errorResponse: HttpErrorResponse) => {
         console.log(errorResponse.error);
-        this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        this.notificationService.notify(NotificationType.ERROR, errorResponse.error.message);
       }
     );
   }
@@ -81,21 +81,13 @@ export class AddGroupDialogComponent implements OnInit, OnDestroy{
     console.log(group);
     this.groupService.createGroup(group).subscribe(
       () => {
-        this.sendNotification(NotificationType.SUCCESS, "Group Created");
+        this.notificationService.notify(NotificationType.SUCCESS, "Group Created");
         this.dialogRef.close(true);
       },
       (errorResponse: HttpErrorResponse) => {
         console.log(errorResponse.error);
-        this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        this.notificationService.notify(NotificationType.ERROR, errorResponse.error.message);
       });
-  }
-
-  private sendNotification(notificationType: NotificationType, message: string) {
-    if (message) {
-      this.notificationService.notify(notificationType, message);
-    } else {
-      this.notificationService.notify(notificationType, "An error occurred. Please try again");
-    }
   }
 
   addTopic(event: MatChipInputEvent) {

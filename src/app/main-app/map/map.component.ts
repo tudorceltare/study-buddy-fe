@@ -45,7 +45,7 @@ export class MapComponent implements OnInit {
     },
       (error) => {
         console.log(error);
-        this.sendNotification(NotificationType.ERROR, error.error.message);
+        this.notificationService.notify(NotificationType.ERROR, error.error.message)
       }
     );
   }
@@ -71,14 +71,6 @@ export class MapComponent implements OnInit {
         break;
       default:
         this.getLocationsWhereMember();
-    }
-  }
-
-  private sendNotification(notificationType: NotificationType, message: string) {
-    if (message) {
-      this.notificationService.notify(notificationType, message);
-    } else {
-      this.notificationService.notify(notificationType, "An error occurred. Please try again");
     }
   }
 }

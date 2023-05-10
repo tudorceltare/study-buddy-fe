@@ -34,10 +34,10 @@ export class MemberOptionsDialogComponent implements OnInit{
   kickUser() {
     this.groupService.kickUser(this.groupId, this.user.id).subscribe(() => {
       this.dialogRef.close(true);
-      this.sendNotification(NotificationType.INFO, "User kicked successfully");
+      this.notificationService.notify(NotificationType.INFO, "User kicked successfully");
     }, (errorResponse: HttpErrorResponse) => {
       console.log(errorResponse.error);
-      this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+      this.notificationService.notify(NotificationType.ERROR, errorResponse.error.message);
     });
     this.dialogRef.close(true);
   }
@@ -45,10 +45,10 @@ export class MemberOptionsDialogComponent implements OnInit{
   promoteToAdmin() {
     this.groupService.promoteToAdmin(this.groupId, this.user.id).subscribe(() => {
       this.dialogRef.close(true);
-      this.sendNotification(NotificationType.INFO, "User made admin successfully");
+      this.notificationService.notify(NotificationType.INFO, "User made admin successfully");
     }, (errorResponse: HttpErrorResponse) => {
       console.log(errorResponse.error);
-      this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+      this.notificationService.notify(NotificationType.ERROR, errorResponse.error.message);
     });
     this.dialogRef.close(true);
   }
@@ -88,13 +88,6 @@ export class MemberOptionsDialogComponent implements OnInit{
     let len = 2;
     let zeros = new Array(len).join('0');
     return (zeros + str).slice(-len);
-  }
-  private sendNotification(notificationType: NotificationType, message: string) {
-    if (message) {
-      this.notificationService.notify(notificationType, message);
-    } else {
-      this.notificationService.notify(notificationType, "An error occurred. Please try again");
-    }
   }
 
 }

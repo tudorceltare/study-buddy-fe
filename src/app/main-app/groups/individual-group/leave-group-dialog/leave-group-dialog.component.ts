@@ -29,18 +29,10 @@ export class LeaveGroupDialogComponent implements OnInit {
   leaveGroup() {
     this.groupService.leaveGroup(this.id).subscribe(() => {
       this.dialogRef.close(true);
-      this.sendNotification(NotificationType.INFO, "You have left the group successfully");
+      this.notificationService.notify(NotificationType.INFO, "You have left the group successfully");
     }, (errorResponse: HttpErrorResponse) => {
       console.log(errorResponse.error);
-      this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+      this.notificationService.notify(NotificationType.ERROR, errorResponse.error.message);
     });
-  }
-
-  private sendNotification(notificationType: NotificationType, message: string) {
-    if (message) {
-      this.notificationService.notify(notificationType, message);
-    } else {
-      this.notificationService.notify(notificationType, "An error occurred. Please try again");
-    }
   }
 }

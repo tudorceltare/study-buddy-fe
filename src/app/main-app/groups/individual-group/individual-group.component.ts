@@ -129,17 +129,10 @@ export class IndividualGroupComponent implements OnInit {
     return (zeros + str).slice(-len);
   }
 
-  private sendNotification(notificationType: NotificationType, message: string) {
-    if (message) {
-      this.notificationService.notify(notificationType, message);
-    } else {
-      this.notificationService.notify(notificationType, "An error occurred. Please try again");
-    }
-  }
 
   joinGroup() {
     this.groupService.joinGroup(this.groupId).subscribe(() => {
-      this.sendNotification(NotificationType.SUCCESS, "You have successfully joined the group");
+      this.notificationService.notify(NotificationType.SUCCESS, 'You have successfully joined the group');
       this.ngOnInit();
     });
   }

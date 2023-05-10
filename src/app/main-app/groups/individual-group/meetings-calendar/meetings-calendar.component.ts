@@ -46,7 +46,7 @@ export class MeetingsCalendarComponent implements OnInit{
     this.groupService.addMeetingDate(this.groupId, dates).subscribe((result) => {
       this.refresh.emit();
     }, error => {
-      this.sendNotification(NotificationType.ERROR, error.error.message);
+      this.notificationService.notify(NotificationType.ERROR, error.error.message);
     });
   }
 
@@ -55,15 +55,7 @@ export class MeetingsCalendarComponent implements OnInit{
     this.groupService.removeMeetingDate(this.groupId, dates).subscribe((result) => {
       this.refresh.emit();
     }, error => {
-      this.sendNotification(NotificationType.ERROR, error.error.message);
+      this.notificationService.notify(NotificationType.ERROR, error.error.message);
     });
-  }
-
-  private sendNotification(notificationType: NotificationType, message: string) {
-    if (message) {
-      this.notificationService.notify(notificationType, message);
-    } else {
-      this.notificationService.notify(notificationType, "An error occurred. Please try again");
-    }
   }
 }

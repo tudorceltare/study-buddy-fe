@@ -11,5 +11,10 @@ export class NotificationService {
 
   public notify(type: NotificationType, message :string) {
     this.notifier.notify(type, message);
+    if (message) {
+      this.notifier.notify(type, message);
+    } else {
+      this.notifier.notify(type, "An error occurred. Please try again");
+    }
   }
 }

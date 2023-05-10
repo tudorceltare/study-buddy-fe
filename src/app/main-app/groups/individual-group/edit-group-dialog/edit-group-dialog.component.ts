@@ -91,7 +91,7 @@ export class EditGroupDialogComponent implements OnInit, OnDestroy {
         this.allTopics = response;
       }, (errorResponse: HttpErrorResponse) => {
         console.log(errorResponse.error);
-        this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        this.notificationService.notify(NotificationType.ERROR, errorResponse.error.message);
       }
     );
   }
@@ -117,21 +117,13 @@ export class EditGroupDialogComponent implements OnInit, OnDestroy {
     this.groupService.updateGroup(group).subscribe(
       (response: Group) => {
         console.log(response);
-        this.sendNotification(NotificationType.SUCCESS, "Group Edited");
+        this.notificationService.notify(NotificationType.SUCCESS, "Group Edited");
         this.dialogRef.close(true);
       },
       (errorResponse: HttpErrorResponse) => {
         console.log(errorResponse.error);
-        this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        this.notificationService.notify(NotificationType.ERROR, errorResponse.error.message);
       });
-  }
-
-  private sendNotification(notificationType: NotificationType, message: string) {
-    if (message) {
-      this.notificationService.notify(notificationType, message);
-    } else {
-      this.notificationService.notify(notificationType, "An error occurred. Please try again");
-    }
   }
 
   addTopic(event: MatChipInputEvent) {

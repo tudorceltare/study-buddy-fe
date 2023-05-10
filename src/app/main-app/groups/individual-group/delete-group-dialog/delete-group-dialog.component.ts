@@ -30,18 +30,10 @@ export class DeleteGroupDialogComponent implements OnInit {
   deleteGroup(){
     this.groupService.deleteGroup(this.id).subscribe(() => {
       this.dialogRef.close(true);
-      this.sendNotification(NotificationType.INFO, "Group deleted successfully");
+      this.notificationService.notify(NotificationType.INFO, "Group deleted successfully");
     }, (errorResponse: HttpErrorResponse) => {
       console.log(errorResponse.error);
-      this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+      this.notificationService.notify(NotificationType.ERROR, errorResponse.error.message);
     });
-  }
-
-  private sendNotification(notificationType: NotificationType, message: string) {
-    if (message) {
-      this.notificationService.notify(notificationType, message);
-    } else {
-      this.notificationService.notify(notificationType, "An error occurred. Please try again");
-    }
   }
 }

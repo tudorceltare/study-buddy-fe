@@ -21,5 +21,7 @@ export const environment = {
     topics: "topics/",
     locationsWhereMember: "users/meeting-locations-member/",
     locationsWhereAdmin: "users/meeting-locations-admin/",
+    meetingsWhereMember: "users/meetings-member/",
+    meetingsWhereAdmin: "users/meetings-admin/",
   }
 };
