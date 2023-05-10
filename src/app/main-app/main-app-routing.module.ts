@@ -22,22 +22,22 @@ const routes: Routes = [
       {
         path: 'groups',
         component: GroupsComponent,
-        canActivate: [RoleGuard]
+        canActivate: [RoleGuard, AuthenticationGuard]
       },
       {
         path: 'groups/:id',
         component: IndividualGroupComponent,
-        canActivate: [RoleGuard]
+        canActivate: [RoleGuard, AuthenticationGuard]
       },
       {
         path: 'calendar',
         component: ScheduleCalendarComponent,
-        canActivate: [RoleGuard]
+        canActivate: [RoleGuard, AuthenticationGuard]
       },
       {
         path: 'map',
         component: MapComponent,
-        canActivate: [RoleGuard]
+        canActivate: [RoleGuard, AuthenticationGuard]
       }
     ]
   }

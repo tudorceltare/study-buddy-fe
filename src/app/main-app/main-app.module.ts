@@ -33,6 +33,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {GoogleMapsModule} from "@angular/google-maps";
 import { MapComponent } from './map/map.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { MapComponent } from './map/map.component';
     MatCardModule,
     MatMenuModule,
     MatAutocompleteModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    MatCheckboxModule
   ],
   exports: [
     SidenavComponent
