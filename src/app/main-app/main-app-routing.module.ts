@@ -7,6 +7,7 @@ import {GroupsComponent} from "./groups/groups.component";
 import {AuthenticationGuard} from "../guard/authentication.guard";
 import {IndividualGroupComponent} from "./groups/individual-group/individual-group.component";
 import {ScheduleCalendarComponent} from "./schedule-calendar/schedule-calendar.component";
+import {MapComponent} from "./map/map.component";
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
       {
         path: 'calendar',
         component: ScheduleCalendarComponent,
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'map',
+        component: MapComponent,
         canActivate: [RoleGuard]
       }
     ]

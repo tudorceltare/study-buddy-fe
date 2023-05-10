@@ -19,5 +19,7 @@ export const environment = {
     groupAddMeetingDates: "groups/add-meeting-dates/",
     groupRemoveMeetingDates: "groups/remove-meeting-dates/",
     topics: "topics/",
+    locationsWhereMember: "users/meeting-locations-member/",
+    locationsWhereAdmin: "users/meeting-locations-admin/",
   }
 };

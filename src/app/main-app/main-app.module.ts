@@ -31,6 +31,8 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatCardModule} from "@angular/material/card";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {GoogleMapsModule} from "@angular/google-maps";
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     LeaveGroupDialogComponent,
     EditGroupDialogComponent,
     MeetingsCalendarComponent,
-    ScheduleCalendarComponent
+    ScheduleCalendarComponent,
+    MapComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -65,6 +68,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     MatCardModule,
     MatMenuModule,
     MatAutocompleteModule,
+    GoogleMapsModule
   ],
   exports: [
     SidenavComponent

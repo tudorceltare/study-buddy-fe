@@ -1,0 +1,26 @@
+<div class="group-header-wrapper">
+  <div class="group-header-container content-card mat-elevation-z2">
+    <div class="header-content-left">
+      <span>Filters: </span>
+      <mat-button-toggle-group class="button-toggle" [formControl]="locationsControl" (change)="loadLocations()">
+        <mat-button-toggle value="member">Where Member</mat-button-toggle>
+        <mat-button-toggle value="admin">Where Admin</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+</div>
+
+<div class="content-wrapper">
+  <div class="content-container mat-elevation-z1">
+    <google-map
+      height="90%"
+      width="100%"
+      [center]="center"
+      [zoom]="zoom">
+      <map-marker *ngFor="let markerPosition of markerPositions"
+                  [position]="markerPosition"
+                  [options]="markerOptions"></map-marker>
+    </google-map>
+  </div>
+</div>
+
