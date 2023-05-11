@@ -163,6 +163,13 @@
   font-size: 14px;
   letter-spacing: 0.35px;
   line-height: 18px;
+  .group-description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* start showing ellipsis when 3rd line is reached */
+    white-space: pre-wrap; /* let the text wrap preserving spaces */
+  }
 }
 .info-with-icon-right {
   display: flex;
